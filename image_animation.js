@@ -22,8 +22,6 @@
     "./vid/edit1.mp4",
     "./vid/unity1.mp4",
     "./vid/spotify2.mp4",
-    "./gif/b2c430cc-5915-4c8b-8cf7-9b8f279dc615_nike4 (1).gif",
-    "./gif/Zei8rHUurf2G3LCU_escape2.gif",
   ];
   
   let images = [];
@@ -41,10 +39,12 @@
 
   // Add source tags for different video formats
   const sources = [
-    { src: './vid/Dribbble_Faria.mp4', type: 'video/mp4' },
-    { src: './vid/Dribbble_Faria.webm', type: 'video/webm' }, // Example of a different codec
-    { src: './vid/Dominos-Add-To-Cart.mp4', type: 'video/mp4' },
-    { src: './vid/Dominos-Add-To-Cart.webm', type: 'video/webm' }, // Example of a different codec
+    { src: "./vid/Dribbble_Faria.mp4", type: "video/mp4" },
+    { src: "./vid/Dribbble_Faria.webm", type: "video/webm" }, // Example of a different codec
+    { src: "./vid/Dominos-Add-To-Cart.mp4", type: "video/mp4" },
+    { src: "./vid/Dominos-Add-To-Cart.webm", type: "video/webm" },
+    { src: "./gif/b2c430cc-5915-4c8b-8cf7-9b8f279dc615_nike4 (1).gif",type: "gif" },
+    { src: "./gif/Zei8rHUurf2G3LCU_escape2.gif",type: "gif" },
     // Add more sources as needed
   ];
 
@@ -93,6 +93,7 @@
 
       videoElement.addEventListener('error', (error) => {
         console.error("Error loading video:", error);
+        console.error("Video source:", newVideoSrc); // Log the video source
         reject(error); // Reject if loading fails
       });
     });
