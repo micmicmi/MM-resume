@@ -1,0 +1,20 @@
+Missing Images:
+- MM_RESUME/mm_works-img/gif_animation.gif
+- MM_RESUME/mm_works-img/body_and_mind_photoaidcom_2x_ai_zoom.jpg
+- MM_RESUME/mm_works-img/car_animation.gif
+- MM_RESUME/mm_works-img/card-photoaidcom_2x_ai_zoom.jpg
+- MM_RESUME/mm_works-img/expremental_dairy_300_dpi.jpg
+- MM_RESUME/mm_works-img/forms_illus_photoaidcom_2x_ai_zoom.jpg
+- MM_RESUME/mm_works-img/service representive_gif.gif
+- MM_RESUME/mm_works-img/home_building_3.gif
+- MM_RESUME/mm_works-img/like2_2_1.png
+- MM_RESUME/mm_works-img/like2_2_2.png
+- MM_RESUME/mm_works-img/like2_2_3.png
+- MM_RESUME/mm_works-img/like2_2_4.png
+- MM_RESUME/mm_works-img/mm_basic_form1.jpg
+- MM_RESUME/mm_works-img/mm_basic_form2.jpg
+- MM_RESUME/mm_works-img/mm_poet_book_cover4.jpg
+- MM_RESUME/mm_works-img/mm_univers_book1_photoaidcom_2x_ai_zoom.jpg
+- MM_RESUME/mm_works-img/mm_univers_book8_photoaidcom_2x_ai_zoom.jpg
+- MM_RESUME/mm_works-img/sample_video.mp4
+- MM_RESUME/mm_works-img/sample_gif.gif
