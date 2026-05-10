@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Works — MM LAB: Michal Meir</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --font: -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica,
+        "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif;
+    }
+
+    html,
+    body {
+      height: 100%;
+      background: #fff;
+      color: #000;
+      font-family: var(--font);
+      overflow: hidden;
+    }
+
+    /* ── FIXED UI LAYER (Z-INDEX: 100) ───── */
+    .ui-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    .ui-layer>* {
+      pointer-events: all;
+    }
+
+    .header-left {
+      position: absolute;
+      top: 1.5rem;
+      left: 2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+
+    .works-title {
+      font-size: clamp(4rem, 10vw, 8.5rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 0.8;
+      margin: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.8rem;
+      padding-top: 1.2rem;
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      text-decoration: none;
+      color: #999;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #000;
+    }
+
+    /* Fixed Center Index */
+    .fixed-index {
+      position: absolute;
+      top: 50%;
+      left: 40%;
+      transform: translate(-50%, -50%);
+      width: 220px;
+    }
+
+    .project-list {
+      list-style: none;
+    }
+
+    .project-list li {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #ccc;
+      margin-bottom: 0.4rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: color 0.3s;
+    }
+
+    .project-list li.active {
+      color: #000;
+      font-weight: 700;
+    }
+
+    .project-list li .arrow {
+      font-size: 0.6rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .project-list li.active .arrow {
+      opacity: 1;
+    }
+
+    /* Counter bottom left */
+    .fixed-counter {
+      position: absolute;
+      bottom: 2rem;
+      left: 2rem;
+      font-size: clamp(6rem, 15vw, 12rem);
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
+
+    .footer-name {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── SCROLLABLE ROWS ────────── */
+    .scroll-container {
+      height: 100vh;
+      overflow-y: scroll;
+      scroll-snap-type: y proximity;
+      /* Faster, less restrictive */
+      scroll-behavior: auto;
+      /* Instant response */
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .project-row {
+      height: 40vh;
+      width: 100%;
+      scroll-snap-align: center;
+      display: flex;
+      align-items: center;
+      padding: 0 4rem;
+    }
+
+    .row-left {
+      display: flex;
+      gap: 1.2rem;
+      flex: 1;
+      justify-content: flex-start;
+    }
+
+    .row-spacer {
+      width: 280px;
+      flex-shrink: 0;
+    }
+
+    .row-right {
+      display: flex;
+      gap: 1rem;
+      flex: 2;
+      justify-content: flex-end;
+    }
+
+    .img-box {
+      background: #f8f8f8;
+      overflow: hidden;
+      opacity: 0.85;
+      transition: opacity 0.4s;
+    }
+
+    .project-row:hover .img-box {
+      opacity: 1;
+    }
+
+    .img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .row-left .img-box {
+      width: 280px;
+      height: 190px;
+    }
+
+    .row-right .img-box {
+      width: 220px;
+      height: 160px;
+    }
+
+    .row-right .img-box.vertical {
+      height: 300px;
+      margin-top: -50px;
+    }
+
+    @media (max-width: 1100px) {
+      .row-spacer {
+        width: 80px;
+      }
+
+      .fixed-index {
+        left: 2rem;
+        transform: translateY(-50%);
+        width: 160px;
+      }
+
+      .fixed-counter {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="ui-layer">
+    <div class="header-left">
+      <h1 class="works-title">Works,</h1>
+      <nav class="nav-links">
+        <a href="./index.html">About,</a>
+        <a href="mailto:michal.meir@gmail.com">Contact</a>
+      </nav>
+    </div>
+
+    <div class="fixed-index">
+      <ul class="project-list" id="projectList"></ul>
+    </div>
+
+    <div class="fixed-counter" id="counter">01</div>
+    <div class="footer-name">Michal Meir</div>
+  </div>
+
+  <div class="scroll-container" id="scrollContainer"></div>
+
+  <script>
+    const projects = [
+      {
+        name: 'ORAGE',
+        left: ['./mm works- img-2/bestie (1).PNG', './mm works- img-2/bestie (2).PNG'],
+        right: ['./mm works- img-2/bestie (3).PNG', './mm works- img-2/bestie (4).PNG', './mm works- img-2/bestie (5).PNG', './mm works- img-2/bestie_1.png']
+      },
+      {
+        name: 'QUECHUA SS25',
+        left: ['./mm works- img-2/B_2-2.png', './mm works- img-2/B_2-3.png'],
+        right: ['./mm works- img-2/B_2-1.png', './mm works- img-2/B_2-3-1.png', './mm works- img-2/B_3.png', './mm works- img-2/B_4.png']
+      },
+      {
+        name: 'THIBAUD FELLAY',
+        left: ['./mm works- img-2/workanti.jpg', './mm works- img-2/acacia.png'],
+        right: ['./mm works- img-2/acacia3.png', './mm works- img-2/3.jpg', './mm works- img-2/M leaves-photoaidcom-2x-ai-zoom.png', './mm works- img-2/body and mind.png']
+      },
+      {
+        name: 'PEBBLE',
+        left: ['./mm works- img-2/Frame 45.png', './mm works- img-2/Group 298.png'],
+        right: ['./mm works- img-2/Group 299.png', './mm works- img-2/Group 300.png', './mm works- img-2/Group 351.png', './mm works- img-2/Group 491.png']
+      },
+      {
+        name: 'ANGUS EMMERSON',
+        left: ['./mm works- img-2/car Animation.gif', './mm works- img-2/b gif logo.gif'],
+        right: ['./mm works- img-2/home building_3.gif', './mm works- img-2/service representive_gif.gif', './mm works- img-2/b2c430cc-5915-4c8b-8cf7-9b8f279dc615_nike4 (1).gif', './mm works- img-2/pershute in the wind.gif']
+      },
+      {
+        name: 'MOODERS',
+        left: ['./mm works- img-2/mm basic form1 .jpg', './mm works- img-2/mm basic form2 .jpg'],
+        right: ['./mm works- img-2/expremental dairy300 dpi.jpg', './mm works- img-2/icons.jpg', './mm works- img-2/mm_dog_icon.png', './mm works- img-2/vertical.jpg']
+      },
+      {
+        name: 'THEUD',
+        left: ['./mm works- img-2/mm_poet book cover4.jpg', './mm works- img-2/mm_univers book2.jpg'],
+        right: ['./mm works- img-2/mm_univers book3.jpg', './mm works- img-2/mm_univers book4.jpg', './mm works- img-2/mm_univers book5.jpg', './mm works- img-2/mm_univers book8-photoaidcom-2x-ai-zoom.jpg']
+      },
+      {
+        name: 'STORM',
+        left: ['./mm works- img-2/pillow city jpg.jpg', './mm works- img-2/pillow city copya.jpg'],
+        right: ['./mm works- img-2/pillow city copyb.jpg', './mm works- img-2/card.jpg', './mm works- img-2/card4.png', './mm works- img-2/Group 727.png']
+      },
+      {
+        name: 'DENISE',
+        left: ['./mm works- img-2/ketuba-neckles love .jpg', './mm works- img-2/love neckles only.jpg'],
+        right: ['./mm works- img-2/keshet 20x15 _adjust colors-01.jpg', './mm works- img-2/bread- of jerusalem copy.jpg', './mm works- img-2/m-1-hide.jpg', './mm works- img-2/m-2-hide.jpg']
+      }
+    ];
+
+    const projectList = document.getElementById('projectList');
+    const scrollContainer = document.getElementById('scrollContainer');
+    const counterEl = document.getElementById('counter');
+
+    projects.forEach((p, i) => {
+      // Nav item
+      const li = document.createElement('li');
+      li.id = `nav-${i}`;
+      li.innerHTML = `${p.name} <span class="arrow">◄</span>`;
+      li.onclick = (e) => {
+        e.preventDefault();
+        const target = document.getElementById(`row-${i}`);
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      };
+      projectList.appendChild(li);
+
+      // Helper for media (Images or Video)
+      const renderMedia = (src) => {
+        const isVideo = src.toLowerCase().endsWith('.mp4') || src.toLowerCase().endsWith('.mov');
+        if (isVideo) {
+          return `<video src="${src}" autoplay muted loop playsinline></video>`;
+        }
+        return `<img src="${src}" alt="">`;
+      };
+
+      // Project Row
+      const row = document.createElement('div');
+      row.className = 'project-row';
+      row.id = `row-${i}`;
+      row.innerHTML = `
+        <div class="row-counter">${(i + 1).toString().padStart(2, '0')}</div>
+        <div class="row-left">
+          ${p.left.map(src => `<div class="img-box">${renderMedia(src)}</div>`).join('')}
+        </div>
+        <div class="row-spacer"></div>
+        <div class="row-right">
+          ${p.right.map((src, idx) => `<div class="img-box ${idx === 2 ? 'vertical' : ''}">${renderMedia(src)}</div>`).join('')}
+        </div>
+      `;
+      scrollContainer.appendChild(row);
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const index = parseInt(entry.target.id.split('-')[1]);
+          updateActive(index);
+        }
+      });
+    }, { threshold: 0.6 });
+
+    document.querySelectorAll('.project-row').forEach(row => observer.observe(row));
+
+    function updateActive(index) {
+      document.querySelectorAll('.project-list li').forEach((li, i) => {
+        li.classList.toggle('active', i === index);
+      });
+      counterEl.textContent = (index + 1).toString().padStart(2, '0');
+    }
+  </script>
+</body>
+
+</html>

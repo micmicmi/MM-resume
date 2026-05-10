@@ -10,72 +10,54 @@
   let draggedTrail = null;
   let offsetX = 0;
   let offsetY = 0;
-  const renderInterval = 500 / 60; // Changed to 60 FPS
+  let animationEnabled = true;
+  const renderInterval = 500 / 60; // 60 FPS
   const maxImages = 10;
 
-  // Video and image paths
+  // Video and image paths (VERIFIED)
   const videoPaths = [
     "./vid/Dominos-Add-To-Cart.mp4",
-    "./vid/samsung1.mp4",
-    "./vid/Dribbble_Faria.mp4",
-    "./vid/edit1.mp4",
-    "./vid/spotify2.mp4",
-    "./vid/unity1.mp4",
     "./vid/Dominos-Add-Toppimg.mp4",
     "./vid/Dominos-Meal-Order-Sequence-1.mp4",
-    "./projects/arx/1.mp4",
-    "./projects/arx/3.mp4",
-    "./mm works- img/Bestie-Show-1.mp4",
+    "./vid/Dribbble_Faria.mp4",
+    "./vid/edit1.mp4",
+    "./vid/samsung1.mp4",
+    "./vid/spotify2.mp4",
+    "./vid/unity1.mp4",
+    "./mm works- img/1.mp4",
+    "./mm works- img/3.mp4",
     "./mm works- img/bestie-show.mp4",
-    "./mm works- img/pershute in the wind.gif",
-    "./mm works- img/WhatsApp Video 2024-11-22 at 17.19.17_874f9e9c.mp4"
+    "./mm works- img/small_02.mp4",
+    "./mm works- img/small_04.mp4"
   ];
 
-const imagePaths = [
-  "./mm works- img/acacia3.png",
-  "./mm works- img/02.webm",
-  "./mm works- img/3.mp4",
-  "./mm works- img/09.webp",
-  "./mm works- img/B_2-2.png", 
-  "./mm works- img/B_2-3-1.png",
-  "./mm works- img/B_2-3.png",
-  "./mm works- img/B_4.png",
-  "./mm works- img/bestie (1).PNG",
-  "./mm works- img/bestie (2).PNG", 
-  "./mm works- img/bestie (3).PNG",
-  "./mm works- img/bestie (4).PNG",
-  "./mm works- img/bestie (5).PNG",
-  "./mm works- img/bestie (6).PNG",
-  "./mm works- img/bestie (7).PNG",
-  "./mm works- img/bestie_1.png",
-  "./mm works- img/Frame 45.png",
-  "./mm works- img/Group 298.png",
-  "./mm works- img/Group 299.png",
-  "./mm works- img/original-3c91a0d7a07f00b9e3cec6664f78f3f6.webp",
-  "./mm works- img/original-42fc977a877443c47c17ff9c680c4ccc.webp",
-  "./mm works- img/original-3519717170c33fc2ac65f4467269e482.webp",
-  "./mm works- img/small_01.webp",
-  "./mm works- img/small_02.mp4",
-  "./mm works- img/small_02.webm",
-  "./mm works- img/small_03.webp",
-  "./mm works- img/small_04.mp4", 
-  "./mm works- img/small_05.webp",
-  "./mm works- img/small_06.webp",
-  "./mm works- img/small_07.webm",
-  "./mm works- img/small_09.webp",
-  "./mm works- img/WhatsApp Image 2024-11-22 at 16.44.28_88710ae5.jpg",
-  "./mm works- img/WhatsApp Image 2024-11-22 at 16.53.12_3241f92b.jpg",
-  "./mm works- img/WhatsApp Image 2024-11-22 at 16.53.27_6980f2df.jpg", 
-  "./mm works- img/WhatsApp Image 2024-11-22 at 16.53.28_7b483ceb.jpg",
-  "./mm works- img/WhatsApp Image 2024-11-22 at 16.53.28_bee6e35c.jpg",
-  "./mm works- img/WhatsApp Image 2024-11-22 at 16.53.29_6e92b51d.jpg",
-  "./mm works- img/WhatsApp Image 2024-11-22 at 16.53.29_656203ca.jpg",
-  "./mm works- img/WhatsApp Image 2024-11-22 at 16.53.29_cba6b165.jpg"
-];
+  const imagePaths = [
+    "./mm works- img-2/acacia3.png",
+    "./mm works- img-2/bestie (1).PNG",
+    "./mm works- img-2/bestie (2).PNG",
+    "./mm works- img-2/bestie (3).PNG",
+    "./mm works- img-2/bestie (4).PNG",
+    "./mm works- img-2/bestie (5).PNG",
+    "./mm works- img-2/bestie_1.png",
+    "./mm works- img-2/acacia.png",
+    "./mm works- img-2/B_2-1.png",
+    "./mm works- img-2/B_2-2.png",
+    "./mm works- img-2/B_2-3-1.png",
+    "./mm works- img-2/B_3.png",
+    "./mm works- img/01.webp",
+    "./mm works- img/09.webp",
+    "./mm works- img/pershute in the wind.gif",
+    "./mm works- img/small_01.webp",
+    "./mm works- img/small_03.webp",
+    "./mm works- img/small_05.webp",
+    "./mm works- img/small_06.webp",
+    "./mm works- img/small_09.webp"
+  ];
 
   document.addEventListener("DOMContentLoaded", async () => {
     setupCanvas();
     await preloadAssets();
+    setupToggleButton();
     setupEventListeners();
     requestAnimationFrame(render);
   });
@@ -86,6 +68,16 @@ const imagePaths = [
       console.error('Canvas element not found');
       return;
     }
+    // Full-screen fixed canvas covering the entire viewport
+    Object.assign(canvas.style, {
+      position: 'fixed',
+      top: '0',
+      left: '0',
+      width: '100vw',
+      height: '100vh',
+      pointerEvents: 'auto',
+      zIndex: '9998'
+    });
     ctx = canvas.getContext("2d");
     resizeCanvas();
   };
@@ -93,6 +85,43 @@ const imagePaths = [
   const resizeCanvas = () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+  };
+
+  // Floating toggle button
+  const setupToggleButton = () => {
+    const toggleBtn = document.createElement('button');
+    toggleBtn.id = 'anim-toggle-btn';
+    toggleBtn.innerHTML = '✦ Animation: ON';
+    Object.assign(toggleBtn.style, {
+      position: 'fixed',
+      bottom: '30px',
+      right: '30px',
+      zIndex: '10001',
+      padding: '12px 24px',
+      background: '#111',
+      color: '#fff',
+      border: 'none',
+      borderRadius: '50px',
+      fontSize: '0.85rem',
+      fontWeight: '600',
+      cursor: 'pointer',
+      letterSpacing: '0.05em',
+      boxShadow: '0 8px 24px rgba(0,0,0,0.25)',
+      transition: 'all 0.3s ease',
+      fontFamily: 'inherit'
+    });
+    // Prevent mousedown from reaching the canvas drag/drop logic
+    toggleBtn.addEventListener('mousedown', (e) => e.stopPropagation());
+    toggleBtn.addEventListener('click', () => {
+      animationEnabled = !animationEnabled;
+      toggleBtn.innerHTML = animationEnabled ? '✦ Animation: ON' : '✦ Animation: OFF';
+      toggleBtn.style.background = animationEnabled ? '#111' : '#666';
+      if (!animationEnabled) {
+        trails = [];
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    });
+    document.body.appendChild(toggleBtn);
   };
 
   // Create a loading screen
@@ -120,25 +149,23 @@ const imagePaths = [
   };
 
   const preloadAsset = (src, isVideo) => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       const asset = isVideo ? document.createElement('video') : new Image();
-      
+
       if (isVideo) {
-        asset.crossOrigin = "anonymous";
+        // Remove crossOrigin as it can block local video files
         asset.muted = true;
         asset.loop = true;
         asset.playsInline = true;
-        asset.autoplay = true;
-        
-        asset.onloadeddata = () => {
+        asset.preload = 'auto';
+
+        asset.oncanplay = () => {
           videos.push({
             element: asset,
             src,
-            width: asset.videoWidth,
-            height: asset.videoHeight
+            width: asset.videoWidth || 300,
+            height: asset.videoHeight || 200
           });
-          // Force play the video once to ensure it's ready
-          asset.play().catch(err => console.warn('Initial video play failed:', err));
           resolve(asset);
         };
       } else {
@@ -154,8 +181,8 @@ const imagePaths = [
       }
 
       asset.onerror = () => {
-        console.error(`Failed to load ${src}`);
-        reject(new Error(`Failed to load ${src}`));
+        console.warn(`Skipping missing asset: ${src}`);
+        resolve(null);
       };
 
       asset.src = src;
@@ -179,7 +206,7 @@ const imagePaths = [
 
   const createTrail = (x, y, isVideo = false) => {
     const assetArray = isVideo ? videos : images;
-    if (assetArray.length === 0) return null;
+    if (assetArray.length === 0 || !animationEnabled) return null;
 
     const asset = assetArray[Math.floor(Math.random() * assetArray.length)];
     if (isVideo && asset.element) {
@@ -187,7 +214,7 @@ const imagePaths = [
       asset.element.currentTime = 0;
       asset.element.play().catch(err => console.warn('Video play failed:', err));
     }
-    
+
     return {
       asset,
       x,
@@ -202,7 +229,7 @@ const imagePaths = [
     if (!ctx) return;
 
     const maxWidth = window.innerWidth <= 375 ? 100 : window.innerWidth >= 1920 ? 300 : 200;
-    
+
     trails = trails.filter(trail => {
       if (!trail || !trail.asset || trail.alpha <= 0) return false;
 
@@ -212,7 +239,6 @@ const imagePaths = [
       const displayHeight = displayWidth / aspectRatio;
       const drawX = trail.x - displayWidth / 2;
       const drawY = trail.y - displayHeight / 2;
-
 
       try {
         if (trail.isVideo && trail.asset.element) {
@@ -232,22 +258,19 @@ const imagePaths = [
       trail.scale = Math.min(trail.scale + 0.05, 1);
       trail.alpha -= 0.01; // Slowed down the fade out
 
-      // ctx.globalAlpha = trail.alpha;
-      // ctx.globalAlpha = 1;
-     
       return true;
     });
   };
 
   const render = (timestamp) => {
     if (!ctx) return;
-    
+
     if (timestamp - lastRenderTime >= renderInterval) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      drawTrail();
+      if (animationEnabled) drawTrail();
       lastRenderTime = timestamp;
     }
-    
+
     requestAnimationFrame(render);
   };
 
@@ -257,7 +280,7 @@ const imagePaths = [
     const handleMouseMove = (event) => {
       mouseX = event.clientX;
       mouseY = event.clientY;
-      
+
       mouseMoveCount++;
       if (mouseMoveCount % 10 === 0 && trails.length < maxImages) {
         const isVideo = Math.random() < 0.3;
@@ -272,7 +295,7 @@ const imagePaths = [
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    
+
     canvas.addEventListener("click", (event) => {
       mouseX = event.clientX;
       mouseY = event.clientY;
@@ -285,15 +308,15 @@ const imagePaths = [
       const rect = canvas.getBoundingClientRect();
       mouseX = event.clientX - rect.left;
       mouseY = event.clientY - rect.top;
-      
+
       for (const trail of trails) {
         const displayWidth = Math.min(trail.asset.width * 0.3, 200) * trail.scale;
         const aspectRatio = trail.asset.width / trail.asset.height;
         const displayHeight = displayWidth / aspectRatio;
-        
+
         const drawX = trail.x - displayWidth / 2;
         const drawY = trail.y - displayHeight / 2;
-        
+
         if (mouseX >= drawX && mouseX <= drawX + displayWidth &&
             mouseY >= drawY && mouseY <= drawY + displayHeight) {
           isDragging = true;

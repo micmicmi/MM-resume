@@ -1,218 +1,240 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <meta charset="utf-8" />
-    <title>MM LAB: Michal Meir</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="UI UX designer. Strategist. Researcher. Front-end developer. Multidisciplinary creative advocate. Over 15 years of experience."
-    />
-    <meta
-      property="og:title"
-      content="MM LAB: Michal Meir"
-    />
-    <meta property="og:image" content="/og.png" />
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body>
-  <div id="loadingScreen" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; display: none;">Loading...</div>
-    <main>
+
+<head>
+  <meta charset="utf-8" />
+  <title>MM LAB: Michal Meir</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="UI UX designer. Strategist. Researcher. Front-end developer. Multidisciplinary creative advocate. Over 15 years of experience." />
+  <meta property="og:title" content="MM LAB: Michal Meir" />
+  <meta property="og:image" content="/og.png" />
+  <link rel="stylesheet" href="./style.css" />
+  <style>
+    main {
+      position: relative;
+      z-index: 100;
+      pointer-events: none; /* Let trails work in empty areas */
+    }
+
+    main header,
+    main section,
+    .main-nav,
+    a {
+      position: relative;
+      z-index: 101;
+      pointer-events: auto; /* Make sure content is clickable */
+    }
+
+    /* Works Link Styling */
+    a[href="./works.html"] {
+      color: #000;
+      text-decoration: underline;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      display: inline-block;
+      margin-top: 0.5rem;
+    }
+
+    a[href="./works.html"]:hover {
+      color: #666;
+      transform: translateY(-2px);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    /* General link hover */
+    a:hover {
+      opacity: 0.7;
+      cursor: pointer;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="loadingScreen"
+    style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; display: none;">
+    Loading...</div>
+  <main>
     <canvas id="canvas"></canvas>
-        <header class="home">
-         <h1>
-            <span class="name">MM LAB: Michal Meir </span>
-            Head of product ,A Multi-Disciplinary Designer. User-centered. Strategist. Researcher. Front-End Developer. typography lover. Tech
-            Enthusiast. A curious creator who thrives on exploring the exciting
-            intersections of design, art &amp; technology. Passionate about
-            learning and pushing boundaries. 13+ years of experience.
-        </h1>
-      </header>
+
+    <header class="home">
+      <h1>
+        <span class="name">MM LAB: Michal Meir </span>
+        Head of product ,A Multi-Disciplinary Designer. User-centered. Strategist. Researcher. Front-End Developer.
+        typography lover. Tech
+        Enthusiast. A curious creator who thrives on exploring the exciting
+        intersections of design, art &amp; technology. Passionate about
+        learning and pushing boundaries. 15+ years of experience.
+      </h1>
+    </header>
+    <section id="about" class="section text">
+      <h2 class="heading">About</h2>
+      <div class="section-content">
+        <section class="subsection">
+          <h3>Philosophy</h3>
+          <div class="subsection-content">
+            <p>
+              I am committed to a design-driven approach that prioritizes
+              understanding users' needs to create a meaningful impact.
+              Recognizing that data plays a crucial role in identifying user
+              challenges and friction points, I leverage insights to inform my
+              design decisions. At the core of my work is empathy, which
+              serves as the foundation for developing solutions that truly
+              resonate with users and enhance their overall experience.
+            </p>
+          </div>
+        </section>
+        <section class="subsection">
+          <h3>Motivators</h3>
+          <div class="subsection-content">
+            <p>
+              I am committed to defining a clear product direction and setting
+              ambitious goals through strategic planning and collaboration
+              with stakeholders. By addressing complex challenges and
+              fostering consensus, I encourage non-designers to share valuable
+              insights while advocating for user needs. My passion lies in
+              creating simple, beautiful, and intuitive experiences that meet
+              user expectations and drive business success.
+            </p>
+          </div>
+        </section>
+        <section class="subsection">
+          <h3>Background</h3>
+          <div class="subsection-content">
+            <p>
+              For 15 years, I’ve been working in digital agencies, product
+              companies, and design studios, helping top companies concept,
+              design, and ship amazing experiences that are simple, beautiful,
+              and easy to use. Higher-ed, museums and archives, non-profits,
+              research and policy, global health, and start-ups.
+              <a href="./works.html" rel="external">works</a>
+            </p>
+          </div>
+        </section>
+      </div>
+    </section>
+    <section class="section lists">
+      <h2 class="heading">Hard Skills</h2>
+      <div class="section-content">
+        <section class="subsection">
+          <h3>Discovery and Research</h3>
+          <div class="subsection-content">
+            <ul>
+              <li>stakeholder workshops</li>
+              <li>design thinking exercises</li>
+              <li>accessibility audits</li>
+              <li>heuristic evaluations</li>
+              <li>analytics audits</li>
+              <li>surveys and focus groups</li>
+              <li>moderated user testing</li>
+              <li>unmoderated user testing</li>
+              <li>card-sorting</li>
+              <li>navigation tree testing</li>
+            </ul>
+          </div>
+        </section>
+        <section class="subsection">
+          <h3><abbr>UX</abbr> Design</h3>
+          <div class="subsection-content">
+            <ul>
+              <li>user flows and journey maps</li>
+              <li>persona development</li>
+              <li>sitemaps and <abbr>IA</abbr></li>
+              <li>content and data modeling</li>
+              <li>modular component systems</li>
+              <li>wireframes and prototyping</li>
+              <li>functional docs</li>
+            </ul>
+          </div>
+        </section>
+        <section class="subsection">
+          <h3>Visual Design</h3>
+          <div class="subsection-content">
+            <ul>
+              <li>branding</li>
+              <li>logo design & Identity</li>
+              <li>styleguides</li>
+              <li>design system</li>
+              <li>figma component systems</li>
+              <li>high-fidelity layouts</li>
+            </ul>
+          </div>
+        </section>
+        <section class="subsection">
+          <h3>Front-end Development</h3>
+          <div class="subsection-content">
+            <ul>
+              <li>accessibility</li>
+              <li>semantic <abbr>HTML</abbr> and pug</li>
+              <li><abbr>CSS</abbr> and sass</li>
+              <li>javascript / node</li>
+              <li>gulp and express</li>
+              <li><abbr>SVG</abbr> and canvas</li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </section>
     <section class="section text">
-        <h2 class="heading">About</h2>
-        <div class="section-content">
-          <section class="subsection">
-            <h3>Philosophy</h3>
-            <div class="subsection-content">
-              <p>
-                I am committed to a design-driven approach that prioritizes
-                understanding users' needs to create a meaningful impact.
-                Recognizing that data plays a crucial role in identifying user
-                challenges and friction points, I leverage insights to inform my
-                design decisions. At the core of my work is empathy, which
-                serves as the foundation for developing solutions that truly
-                resonate with users and enhance their overall experience.
-              </p>
-            </div>
-          </section>
-          <section class="subsection">
-            <h3>Motivators</h3>
-            <div class="subsection-content">
-              <p>
-                I am committed to defining a clear product direction and setting
-                ambitious goals through strategic planning and collaboration
-                with stakeholders. By addressing complex challenges and
-                fostering consensus, I encourage non-designers to share valuable
-                insights while advocating for user needs. My passion lies in
-                creating simple, beautiful, and intuitive experiences that meet
-                user expectations and drive business success.
-              </p>
-            </div>
-          </section>
-          <section class="subsection">
-            <h3>Background</h3>
-            <div class="subsection-content">
-              <p>
-                For 15 years, I’ve been working in digital agencies, product
-                companies, and design studios, helping top companies concept,
-                design, and ship amazing experiences that are simple, beautiful,
-                and easy to use. Higher-ed, museums and archives, non-profits,
-                research and policy, global health, and start-ups.
-                <a href="./work" rel="external">works</a>
-              </p>
-            </div>
-          </section>
-        </div>
-      </section>
-      <section class="section lists">
-        <h2 class="heading">Hard Skills</h2>
-        <div class="section-content">
-          <section class="subsection">
-            <h3>Discovery and Research</h3>
-            <div class="subsection-content">
-              <ul>
-                <li>stakeholder workshops</li>
-                <li>design thinking exercises</li>
-                <li>accessibility audits</li>
-                <li>heuristic evaluations</li>
-                <li>analytics audits</li>
-                <li>surveys and focus groups</li>
-                <li>moderated user testing</li>
-                <li>unmoderated user testing</li>
-                <li>card-sorting</li>
-                <li>navigation tree testing</li>
-              </ul>
-            </div>
-          </section>
-          <section class="subsection">
-            <h3><abbr>UX</abbr> Design</h3>
-            <div class="subsection-content">
-              <ul>
-                <li>user flows and journey maps</li>
-                <li>persona development</li>
-                <li>sitemaps and <abbr>IA</abbr></li>
-                <li>content and data modeling</li>
-                <li>modular component systems</li>
-                <li>wireframes and prototyping</li>
-                <li>functional docs</li>
-              </ul>
-            </div>
-          </section>
-          <section class="subsection">
-            <h3>Visual Design</h3>
-            <div class="subsection-content">
-              <ul>
-                <li>branding</li>
-                <li>logo design & Identity</li>
-                <li>styleguides</li>
-                <li>design system</li>
-                <li>figma component systems</li>
-                <li>high-fidelity layouts</li>
-              </ul>
-            </div>
-          </section>
-          <section class="subsection">
-            <h3>Front-end Development</h3>
-            <div class="subsection-content">
-              <ul>
-                <li>accessibility</li>
-                <li>semantic <abbr>HTML</abbr> and pug</li>
-                <li><abbr>CSS</abbr> and sass</li>
-                <li>javascript / node</li>
-                <li>gulp and express</li>
-                <li><abbr>SVG</abbr> and canvas</li>
-              </ul>
-            </div>
-          </section>
-        </div>
-      </section>
-      <section class="section text">
-        <h2 class="heading">Current</h2>
-        <div class="section-content">
-          <section class="subsection">
-            <h3>Role</h3>
-            <div class="subsection-content">
-              <p>
-                Head of product design, at
-                <a href="https://bestie.co.il/" rel="external noopener"
-                  >BESTIE</a
-                >
-                and, Founder &amp; Creative director at
-                <a href="https://michalmeir.com/" rel="external noopener">
-                  MMlab</a
-                >
-              </p>
-            </div>
-          </section>
-          <section class="subsection">
-            <h3>Time Zone</h3>
-            <div class="subsection-content">
-              <p>Eastern Standard Time (<abbr class="normal">GMT</abbr>-5)</p>
-            </div>
-          </section>
-          <section class="subsection">
-            <h3>Elsewhere</h3>
-            <div class="subsection-content">
-              <p>
-                <a href="https://github.com/micmicmi" rel="external noopener"
-                  >GitHub</a
-                >,
-                <a
-                  href="https://www.instagram.com/michal_meier/"
-                  rel="external noopener"
-                  >Instagram</a
-                >, and
-                <a
-                  href="https://www.linkedin.com/in/michal-meir-8675b543/"
-                  rel="external noopener"
-                  >LinkedIn</a
-                >.
-              </p>
-            </div>
-          </section>
-          <section class="subsection">
-            <h3>Contact</h3>
-            <div class="subsection-content">
-              <p> phone: +972-54-456-7890
+      <h2 class="heading">Current</h2>
+      <div class="section-content">
+        <section class="subsection">
+          <h3>Role</h3>
+          <div class="subsection-content">
+            <p>
+              Head of product design, at
+              <a href="https://bestie.co.il/" rel="external noopener">BESTIE</a>
+              and, Founder &amp; Creative director at
+              <a href="https://michalmeir.com/" rel="external noopener">
+                MMlab</a>
+            </p>
+          </div>
+        </section>
+        <section class="subsection">
+          <h3>Time Zone</h3>
+          <div class="subsection-content">
+            <p>Eastern Standard Time (<abbr class="normal">GMT</abbr>-5)</p>
+          </div>
+        </section>
+        <section class="subsection">
+          <h3>Elsewhere</h3>
+          <div class="subsection-content">
+            <p>
+              <a href="https://github.com/micmicmi" rel="external noopener">GitHub</a>,
+              <a href="https://www.instagram.com/michal_meier/" rel="external noopener">Instagram</a>, and
+              <a href="https://www.linkedin.com/in/michal-meir-8675b543/" rel="external noopener">LinkedIn</a>.
+            </p>
+          </div>
+        </section>
+        <section class="subsection">
+          <h3>Contact</h3>
+          <div class="subsection-content">
+            <p> phone: +972-54-456-7890
               <br> download <a href="./Resume_mm2.pdf" rel="external">CV / resume</a>
               <br>
-              <a
-                  href="mailto:michal.meir@gmail.com"
-                  target="_blank"
-                  class="link svelte-1r8uroi"
-                  >Send a message</a
-                >
-                about new opportunities or collaborations.
+              <a href="mailto:michal.meir@gmail.com" target="_blank" class="link svelte-1r8uroi">Send a message</a>
+              about new opportunities or collaborations.
 
-              </p>
-            </div>
-          </section>
-        </div>
-      </section>
-    </main>
-<script src="image_animation.js"></script>
-<script>
-  const loadingScreen = document.getElementById('loadingScreen');
-  window.addEventListener('load', () => {
-    if (loadingScreen) {
-      loadingScreen.style.display = 'none';
-    }
-  });
-</script>
+            </p>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
 
-<script defer>
-   const playButton = document.getElementById("playButton");
-</script>
-  </body>
+  <script src="image_animation.js"></script>
+  <script>
+    window.addEventListener('load', () => {
+      const loadingScreen = document.getElementById('loadingScreen');
+      if (loadingScreen) loadingScreen.style.display = 'none';
+    });
+  </script>
+</body>
+
 </html>
