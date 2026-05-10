@@ -6,16 +6,64 @@ html {
 
 }
 
+main {
+  position: relative;
+  pointer-events: none;
+}
+
+main header,
+main section {
+  position: relative;
+  pointer-events: none;
+}
+
+a,
+.nav-links a {
+  position: relative;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+a[href="./works.html"] {
+  color: #037777;
+  text-decoration: underline;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin-top: 1.5rem;
+}
+
+a[href="./works.html"]:hover {
+  color: #665;
+  transform: translateY(-3px);
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* General link hover */
+a:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 #canvas {
-  z-index: 1;
-  position: absolute; /* Changed from fixed to absolute */
+  z-index: 1 !important;
+  position: absolute;
+  /* Changed from fixed to absolute */
   height: 100vh;
   width: 100vw;
   pointer-events: all;
   top: 0;
   left: 0;
-  clip-path: inset(0 0 calc(100% - 100vh) 0); /* Clips to viewport height */
-  mix-blend-mode: normal; /* Changed from 'multiply' to 'normal' */
+  clip-path: inset(0 0 calc(100% - 100vh) 0);
+  /* Clips to viewport height */
+  mix-blend-mode: normal;
+  /* Changed from 'multiply' to 'normal' */
 }
 
 
@@ -57,11 +105,14 @@ abbr[title] {
   text-decoration: underline dotted;
 }
 
-b, strong {
+b,
+strong {
   font-weight: bolder;
 }
 
-code, kbd, samp {
+code,
+kbd,
+samp {
   font-family: monospace, monospace;
   font-size: 1em;
 }
@@ -70,7 +121,8 @@ small {
   font-size: 80%;
 }
 
-sub, sup {
+sub,
+sup {
   font-size: 75%;
   line-height: 0;
   position: relative;
@@ -85,18 +137,26 @@ sup {
   top: -0.5em;
 }
 
-button, input, optgroup, select, textarea {
+button,
+input,
+optgroup,
+select,
+textarea {
   font-family: inherit;
   font-size: 100%;
   line-height: 1.15;
   margin: 0;
 }
 
-button, input {
+button,
+input {
   overflow: visible;
 }
 
-[type=button], [type=reset], [type=submit], button {
+[type=button],
+[type=reset],
+[type=submit],
+button {
   appearance: button;
 }
 
@@ -121,12 +181,14 @@ textarea {
   overflow: auto;
 }
 
-[type=checkbox], [type=radio] {
+[type=checkbox],
+[type=radio] {
   box-sizing: border-box;
   padding: 0;
 }
 
-[type=number]::-webkit-inner-spin-button, [type=number]::-webkit-outer-spin-button {
+[type=number]::-webkit-inner-spin-button,
+[type=number]::-webkit-outer-spin-button {
   height: auto;
 }
 
@@ -167,10 +229,6 @@ template {
   box-sizing: border-box;
 }
 
-img {
-  /* max-width: 100%; */
-}
-
 .border-box {
   box-sizing: border-box;
 }
@@ -193,7 +251,11 @@ header.home h1 span.name {
   font-family: -apple-system, BlinkMacSystemFont, "avenir next", avenir, helvetica, "helvetica neue", ubuntu, roboto, noto, "segoe ui", arial, sans-serif;
 }
 
-dd, figcaption, header.home h1 span.name, li, p {
+dd,
+figcaption,
+header.home h1 span.name,
+li,
+p {
   font-weight: 300;
 }
 
@@ -201,19 +263,28 @@ dt {
   font-weight: 700;
 }
 
-.card dd, .card dt, .lists .subsection-content ul li, .section h2, .subsection h3, .text .subsection-content p {
+.card dd,
+.card dt,
+.lists .subsection-content ul li,
+.section h2,
+.subsection h3,
+.text .subsection-content p {
   line-height: 1.5;
 }
 
-dl, ol, ul {
+dl,
+ol,
+ul {
   list-style-type: none;
 }
 
-.section, header.home {
+.section,
+header.home {
   position: relative;
 }
 
-.section h2, header.home h1 span.name {
+.section h2,
+header.home h1 span.name {
   position: absolute;
 }
 
@@ -235,7 +306,8 @@ ul {
 
 .section {
   padding-bottom: 2rem;
-  padding-top: .5rem; /* Combined padding properties */
+  padding-top: .5rem;
+  /* Combined padding properties */
 }
 
 header.home h1 {
@@ -259,13 +331,16 @@ dd {
   margin-top: 0;
 }
 
-header  .section {
+header .section {
   margin-top: 8rem;
 }
 
-.lists .subsection-content ul, .subsection h3, header.home h1 {
+.lists .subsection-content ul,
+.subsection h3,
+header.home h1 {
   margin-top: 0;
-  margin-bottom: 2; /* Specified unit for margin-bottom */
+  margin-bottom: 2rem;
+  /* Specified unit for margin-bottom */
 }
 
 .card {
@@ -283,15 +358,40 @@ header  .section {
   margin-bottom: 4rem;
 }
 
-h2, h3, h4, h5, h6 {
+h2,
+h3,
+h4,
+h5,
+h6 {
   text-transform: lowercase;
 }
 
-.card dd, .card dt, dd, dt, h1, h2, h3, h4, h5, h6, header.home h1 span.name, li, p {
+.card dd,
+.card dt,
+dd,
+dt,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header.home h1 span.name,
+li,
+p {
   font-size: 1.25rem;
 }
 
-dd, dt, h1, h2, h3, h4, h5, h6, li, p {
+dd,
+dt,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+p {
   max-width: 30em;
 }
 
@@ -319,7 +419,9 @@ dd, dt, h1, h2, h3, h4, h5, h6, li, p {
   border: initial;
 }
 
-:root, a, header.home h1 span.name {
+:root,
+a,
+header.home h1 span.name {
   color: #000;
 }
 
@@ -327,11 +429,22 @@ h1 {
   color: #222;
 }
 
-.section h2, body {
+.section h2,
+body {
   background: #fff;
 }
 
-dd, dt, h1, h2, h3, h4, h5, h6, header.home h1 span.name, li, p {
+dd,
+dt,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header.home h1 span.name,
+li,
+p {
   letter-spacing: -.01em;
 }
 
@@ -339,38 +452,50 @@ dd, dt, h1, h2, h3, h4, h5, h6, header.home h1 span.name, li, p {
   .subsection {
     display: flex;
   }
+
   header.home h1 {
     max-width: 48rem;
   }
+
   main {
     padding: 4rem;
   }
+
   .subsection .subsection-content {
     padding-left: 0;
   }
+
   .section {
     padding-top: 1rem;
   }
+
   header.home h1 {
     padding-top: 8rem;
     padding-bottom: 8rem;
   }
+
   .text .subsection-content p:last-child {
     margin-bottom: 0;
   }
+
   .card {
     margin-top: 0;
   }
-  header  .section {
+
+  header .section {
     margin-top: 4rem;
   }
+
   .cards .subsection-content dl {
     margin-top: 0;
     margin-bottom: 0;
   }
-  .subsection .subsection-content, .subsection h3 {
+
+  .subsection .subsection-content,
+  .subsection h3 {
     width: 50%;
   }
+
   .sr-only-ns {
     position: absolute;
     padding: 0;
@@ -381,6 +506,7 @@ dd, dt, h1, h2, h3, h4, h5, h6, header.home h1 span.name, li, p {
     height: 1px;
     margin: -1px;
   }
+
   .sr-only-focusable-ns:focus {
     position: relative;
     width: auto;
@@ -397,52 +523,70 @@ dd, dt, h1, h2, h3, h4, h5, h6, header.home h1 span.name, li, p {
     border-top-width: 1px;
     border-color: #a5a5a5;
   }
+
   .section {
     display: flex;
   }
+
   header.home h1 {
     max-width: 65rem;
   }
+
   .section h2 {
     position: relative;
   }
+
   .section h2 {
     padding-right: 0;
   }
+
   .subsection {
     padding-bottom: 2rem;
   }
+
   .subsection:not(:first-child) {
     padding-top: 2rem;
   }
+
   .subsection {
     margin-bottom: .25rem;
   }
+
   .subsection:not(:first-child) {
     margin-top: 0;
   }
+
   .subsection {
     margin-top: 1rem;
   }
+
   .section h2 {
     margin-top: 1rem;
     margin-bottom: 1rem;
   }
-  .card dd, .card dt, .card h4 {
+
+  .card dd,
+  .card dt,
+  .card h4 {
     max-width: 34em;
   }
+
   .section h2 {
     width: 25%;
   }
+
   .section .section-content {
     width: 75%;
   }
+
   .subsection h3 {
     width: 33.3333333333%;
   }
+
   .subsection .subsection-content {
     width: 66.6666666667%;
   }
+
   .sr-only-l {
     position: absolute;
     padding: 0;
@@ -453,6 +597,7 @@ dd, dt, h1, h2, h3, h4, h5, h6, header.home h1 span.name, li, p {
     height: 1px;
     margin: -1px;
   }
+
   .sr-only-focusable-l:focus {
     position: relative;
     width: auto;
@@ -461,21 +606,27 @@ dd, dt, h1, h2, h3, h4, h5, h6, header.home h1 span.name, li, p {
     margin: inherit;
     border: initial;
   }
+
   .section h2 {
     background: 0 0;
   }
+
   .lists .subsection-content ul {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    column-gap: 1rem; /* Removed vendor prefix */
+    column-gap: 1rem;
+    /* Removed vendor prefix */
   }
-  .lists .subsection-content ul > * {
+
+  .lists .subsection-content ul>* {
     flex-basis: calc(50% - .5rem);
   }
+
   .section h2 {
     width: 25%;
   }
+
   .section .section-content {
     width: 75%;
   }
@@ -485,15 +636,19 @@ dd, dt, h1, h2, h3, h4, h5, h6, header.home h1 span.name, li, p {
   .section h2 {
     width: 20%;
   }
+
   .subsection h3 {
     width: 25%;
   }
+
   .subsection .subsection-content {
     width: 75%;
   }
+
   .section .section-content {
     width: 80%;
   }
+
   .sr-only-xl {
     position: absolute;
     padding: 0;
@@ -504,6 +659,7 @@ dd, dt, h1, h2, h3, h4, h5, h6, header.home h1 span.name, li, p {
     height: 1px;
     margin: -1px;
   }
+
   .sr-only-focusable-xl:focus {
     position: relative;
     width: auto;
@@ -512,24 +668,31 @@ dd, dt, h1, h2, h3, h4, h5, h6, header.home h1 span.name, li, p {
     margin: inherit;
     border: initial;
   }
+
   .lists .subsection-content ul {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    column-gap: 1rem; /* Removed vendor prefix */
+    column-gap: 1rem;
+    /* Removed vendor prefix */
   }
-  .lists .subsection-content ul > * {
+
+  .lists .subsection-content ul>* {
     flex-basis: calc(32% - .5rem);
   }
+
   .section h2 {
     width: 20%;
   }
+
   .subsection h3 {
     width: 25%;
   }
+
   .subsection .subsection-content {
     width: 75%;
   }
+
   .section .section-content {
     width: 80%;
   }
@@ -563,13 +726,16 @@ abbr.normal {
   font-feature-settings: normal;
 }
 
-@media screen and (-webkit-min-device-pixel-ratio: 2), screen and (min-resolution: 2dppx) {
+@media screen and (-webkit-min-device-pixel-ratio: 2),
+screen and (min-resolution: 2dppx) {
   body {
-    -webkit-font-smoothing: antialiased; /* Kept only necessary smoothing */
+    -webkit-font-smoothing: antialiased;
+    /* Kept only necessary smoothing */
   }
 }
 
-a:focus, a:hover {
+a:focus,
+a:hover {
   background: #e3e3ff;
 }
 
